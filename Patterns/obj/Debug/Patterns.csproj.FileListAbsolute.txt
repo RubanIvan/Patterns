@@ -1,0 +1,13 @@
+D:\Projects\Patterns\Patterns\bin\Debug\Patterns.exe.config
+D:\Projects\Patterns\Patterns\bin\Debug\Patterns.exe
+D:\Projects\Patterns\Patterns\bin\Debug\Patterns.pdb
+D:\Projects\Patterns\Patterns\obj\Debug\Patterns.csprojResolveAssemblyReference.cache
+D:\Projects\Patterns\Patterns\obj\Debug\MainWindow.baml
+D:\Projects\Patterns\Patterns\obj\Debug\MainWindow.g.cs
+D:\Projects\Patterns\Patterns\obj\Debug\App.g.cs
+D:\Projects\Patterns\Patterns\obj\Debug\Patterns_MarkupCompile.cache
+D:\Projects\Patterns\Patterns\obj\Debug\Patterns.g.resources
+D:\Projects\Patterns\Patterns\obj\Debug\Patterns.Properties.Resources.resources
+D:\Projects\Patterns\Patterns\obj\Debug\Patterns.csproj.GenerateResource.Cache
+D:\Projects\Patterns\Patterns\obj\Debug\Patterns.exe
+D:\Projects\Patterns\Patterns\obj\Debug\Patterns.pdb
