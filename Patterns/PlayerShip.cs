@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 namespace Patterns
 {
 
-    public class PlayerShip:Grid
+    public class PlayerShip : Grid
     {
         //Применение шаблона синглтон
         /// <summary>Поле хранит единственный экземпляр </summary>

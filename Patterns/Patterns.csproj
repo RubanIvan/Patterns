@@ -62,6 +62,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CommonLib.cs" />
+    <Compile Include="EnemyShip.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -107,6 +108,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\bkg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\Enemy\enemy1.png" />
+    <Resource Include="Img\Enemy\enemy2.png" />
+    <Resource Include="Img\Enemy\enemy3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\ShipEnemy\enemy1.png" />
+    <Resource Include="Img\ShipEnemy\enemy2.png" />
+    <Resource Include="Img\ShipEnemy\enemy3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\Fire\FireGreen.png" />
+    <Resource Include="Img\Fire\FireRed.png" />
+    <Resource Include="Img\Fire\FireYellow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

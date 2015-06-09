@@ -33,6 +33,9 @@ namespace Patterns
         //управление скролингом фона
         private Thickness ImageThickness; 
 
+
+        private List<GameObject> GameObjectList=new List<GameObject>();
+
         //Конструктор
         public MainWindow()
         {
@@ -49,6 +52,10 @@ namespace Patterns
 
             Timer.Elapsed += GameUpdate;
             Timer.Start();
+
+            EnemyShipMk1 en=new EnemyShipMk1();
+            GameObjectList.Add(en);
+            MainGrid.Children.Add(en.Grid);
         }
 
         /// <summary>Основной цикл программы </summary>
@@ -60,9 +67,23 @@ namespace Patterns
                 KeyboardUpdate();
                 //Прокрутка заднего фона
                 BkgUpdate();
+
+                GameObjectUpdate();
             });
 
             
+        }
+
+        private void GameObjectUpdate()
+        {
+            foreach (GameObject GameObject in GameObjectList)
+            {
+                GameObject.Update(new Thickness());
+                if (!GameObject.isAlive) MainGrid.Children.Remove(GameObject.Grid);
+            }
+
+
+
         }
 
         /// <summary>Прокрутка заднего фона </summary>
