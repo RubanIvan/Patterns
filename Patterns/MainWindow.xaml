@@ -1,11 +1,15 @@
 ﻿<Window x:Class="Patterns.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525" KeyDown="MainGrid_KeyDown" >
+        Title="MainWindow" Height="820" Width="720"
+        KeyDown="MainGrid_KeyDown" KeyUp="Window_KeyUp"  >
+
     <Grid Name="MainGrid"  >
-        
-        <!--<Image Source="Img/ShipPlayer/ship.png"></Image>-->
-        
-        
+
+        <Image Name="BkgImage" Source="Img/bkg.png" Stretch="None" Margin="0,-2400,0,0" Width="700" Height="3210"    />
+
+
+
+
     </Grid>
 </Window>
