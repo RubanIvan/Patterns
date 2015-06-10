@@ -74,15 +74,19 @@ namespace Patterns
             
         }
 
+        /// <summary>Запускаем Update на всех обьектах. если они мертвы то удаляем их</summary>
         private void GameObjectUpdate()
         {
-            foreach (GameObject GameObject in GameObjectList)
+            for (int i = 0; i < GameObjectList.Count; i++)
             {
-                GameObject.Update(new Thickness());
-                if (!GameObject.isAlive) MainGrid.Children.Remove(GameObject.Grid);
+                GameObjectList[i].Update();
+                if (!GameObjectList[i].isAlive)
+                {
+                    MainGrid.Children.Remove(GameObjectList[i].Grid);
+                    GameObjectList.RemoveAt(i);
+                }
+                
             }
-
-
 
         }
 

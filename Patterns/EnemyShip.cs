@@ -11,39 +11,18 @@ using System.Windows.Media.Imaging;
 
 namespace Patterns
 {
-    public interface IUpdate
-    {
-        Thickness Update(Thickness Position);
-    }
-
-    public class UpdateDropDownMove : GameObject
-    {
-        public override Thickness Update(Thickness Position)
-        {
-           return new Thickness(Position.Left, Position.Top + 15, Position.Right, Position.Bottom);
-        }
-    }
-
-
-    public class UpdateDropDownMoveRnd : GameObject
-    {
-        public override Thickness Update(Thickness Position)
-        {
-            return new Thickness(Position.Left+Rnd.Next(-10,10), Position.Top + 10+Rnd.Next(20), Position.Right, Position.Bottom);
-        }
-    }
-
-
-
-    public abstract class GameObject : IUpdate
+ 
+    public abstract class GameObject
     {
         public Grid Grid;
-        public Thickness Position;
-
+        
+        public IMoveStrategy MoveStrategy;
        
         public bool isAlive;
 
-        public abstract Thickness Update(Thickness Position);
+        public abstract void Update();
+
+        
     }
 
 
@@ -100,8 +79,7 @@ namespace Patterns
 
     public class EnemyShipMk1 : GameObject
     {
-        private IUpdate UpdateStrategy;
-
+        
         public EnemyShipMk1()
         {
             isAlive = true;
@@ -109,11 +87,10 @@ namespace Patterns
             Grid=new Grid();
             Grid.Width = 62;
             Grid.Height = 51;
+            
+            Grid.Margin = new Thickness(Rnd.Next(500), -700, 0, 0);
 
-            Position=new Thickness(Rnd.Next(500),-700,0,0);
-            Grid.Margin = Position;
-
-            UpdateStrategy=new UpdateDropDownMoveRnd();
+            MoveStrategy = new UpdateDropDownMoveZigZag();
 
             Uri U = new Uri(@"Img/ShipEnemy/enemy1.png", UriKind.Relative);
             BitmapImage Bi = new BitmapImage(U);
@@ -123,13 +100,12 @@ namespace Patterns
             Grid.Children.Add(Img);
         }
 
-        public override Thickness Update(Thickness p)
+        public override void Update()
         {
-            Grid.Margin = UpdateStrategy.Update(Grid.Margin);
-            Position = Grid.Margin;
-
-            if (Position.Top > 900) isAlive = false;
-            return Grid.Margin;
+            Grid.Margin = MoveStrategy.Update(Grid.Margin);
+            
+            if (Grid.Margin.Top > 900) isAlive = false;
+           
         }
     }
 }
