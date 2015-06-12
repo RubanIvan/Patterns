@@ -100,7 +100,7 @@ namespace Patterns
         /// <summary>Прокрутка заднего фона </summary>
         private void BkgUpdate()
         {
-            ImageThickness.Top += 3;
+            ImageThickness.Top += 4;
 
             if (ImageThickness.Top >= 0)
             {
