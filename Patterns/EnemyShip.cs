@@ -14,13 +14,28 @@ namespace Patterns
  
     public abstract class GameObject
     {
-        public Grid Grid;
+        public Grid Grid=new Grid();
         
         public IMoveStrategy MoveStrategy;
-       
-        public bool isAlive;
 
-        public abstract void Update();
+        public IFireBullet FireBullet;
+       
+        public bool isAlive=true;
+
+        public virtual void Update()
+        {
+            Grid.Margin = MoveStrategy.Update(Grid.Margin);
+
+            //если вылетели за экран маркеруем объект как мертвый
+            if (Grid.Margin.Top > 900 || Grid.Margin.Top < -900) isAlive = false;
+        }
+
+
+        public GameObject(IMoveStrategy moveStrategy)
+        {
+            MoveStrategy = moveStrategy;
+        }
+
 
         
     }
@@ -79,33 +94,34 @@ namespace Patterns
 
     public class EnemyShipMk1 : GameObject
     {
-        
-        public EnemyShipMk1()
-        {
-            isAlive = true;
 
-            Grid=new Grid();
+        public EnemyShipMk1(IMoveStrategy moveStrategy):base(moveStrategy)
+        {
             Grid.Width = 62;
             Grid.Height = 51;
             
             Grid.Margin = new Thickness(Rnd.Next(500), -700, 0, 0);
-
-            MoveStrategy = new UpdateDropDownMoveZigZag();
-
+            
             Uri U = new Uri(@"Img/ShipEnemy/enemy1.png", UriKind.Relative);
             BitmapImage Bi = new BitmapImage(U);
             Image Img = new Image();
             Img.Source = Bi;
             Img.Stretch = Stretch.Fill;
             Grid.Children.Add(Img);
+
+            FireBullet = new FireBulletsRed();
+
+
         }
 
-        public override void Update()
+
+        public GameObject FireBullets()
         {
-            Grid.Margin = MoveStrategy.Update(Grid.Margin);
-            
-            if (Grid.Margin.Top > 900) isAlive = false;
-           
+            return FireBullet.GetFireBullet(Grid.Margin);
         }
     }
+
+
+   
+
 }

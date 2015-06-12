@@ -67,7 +67,12 @@ namespace Patterns
         //создаем анимацию вращения
         public Int32Animation AnimEngFire = new Int32Animation(0, AnimShipEngMaxFrame - 1, TimeSpan.FromSeconds(0.4));
 
-        
+        /// <summary>интерфейс выстрела из пушки </summary>
+        public IFireBullet FireBullet;
+
+        //время последнего выстрела из пушки
+        public DateTime FireBulleTime;
+
         //Конструктор зделан приватным для применения синглтона
         private PlayerShip()
         {
@@ -121,28 +126,36 @@ namespace Patterns
             //Запускаем анимацию
             BeginAnimation(CurFrameRotateProperty, AnimEngFire);
 
+
+            FireBullet=new PlayerFireBulletsGreen();
+            FireBulleTime=DateTime.Now;
         }
 
-        
+        /// <summary>Выстрел из пушки</summary>
+        public GameObject FireBullets()
+        {
+            return FireBullet.GetFireBullet(Grid.Margin);
+        }
+
         #region Движение в стороны
         public void MoveRight()
         {
-            Grid.Margin = new Thickness(Grid.Margin.Left + 10, Grid.Margin.Top, 0, 0);
+            Grid.Margin = new Thickness(Grid.Margin.Left + 20, Grid.Margin.Top, 0, 0);
         }
 
         public void MoveLeft()
         {
-            Grid.Margin = new Thickness(Grid.Margin.Left - 10, Grid.Margin.Top, 0, 0);
+            Grid.Margin = new Thickness(Grid.Margin.Left - 20, Grid.Margin.Top, 0, 0);
         }
 
         public void MoveUp()
         {
-            Grid.Margin = new Thickness(Grid.Margin.Left, Grid.Margin.Top - 10, 0, 0);
+            Grid.Margin = new Thickness(Grid.Margin.Left, Grid.Margin.Top - 20, 0, 0);
         }
 
         public void MoveDown()
         {
-            Grid.Margin = new Thickness(Grid.Margin.Left, Grid.Margin.Top + 10, 0, 0);
+            Grid.Margin = new Thickness(Grid.Margin.Left, Grid.Margin.Top + 20, 0, 0);
         } 
         #endregion
 

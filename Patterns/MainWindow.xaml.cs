@@ -53,9 +53,14 @@ namespace Patterns
             Timer.Elapsed += GameUpdate;
             Timer.Start();
 
-            EnemyShipMk1 en=new EnemyShipMk1();
+            EnemyShipMk1 en = new EnemyShipMk1(new StrategyMoveZigZag());
             GameObjectList.Add(en);
             MainGrid.Children.Add(en.Grid);
+
+            GameObject obj=en.FireBullets();
+            GameObjectList.Add(obj);
+            MainGrid.Children.Add(obj.Grid);
+
         }
 
         /// <summary>Основной цикл программы </summary>
@@ -80,6 +85,8 @@ namespace Patterns
             for (int i = 0; i < GameObjectList.Count; i++)
             {
                 GameObjectList[i].Update();
+
+                //если объект мертв удаляем его
                 if (!GameObjectList[i].isAlive)
                 {
                     MainGrid.Children.Remove(GameObjectList[i].Grid);
@@ -124,6 +131,17 @@ namespace Patterns
 
                     case Key.Down:
                         PlayerShip.MoveDown();
+                        break;
+
+                    case Key.Space:
+                        //если с прошлого выстрела прошло больше n времени значит стреляем еще
+                        if ((DateTime.Now - PlayerShip.FireBulleTime).Milliseconds > 300)
+                        {
+                            PlayerShip.FireBulleTime = DateTime.Now;
+                            GameObject obj = PlayerShip.FireBullets();
+                            GameObjectList.Add(obj);
+                            MainGrid.Children.Add(obj.Grid);
+                        }
                         break;
                 }
             }
